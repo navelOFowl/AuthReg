@@ -1,0 +1,46 @@
+﻿<Page x:Class="AuthReg.WelcomePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AuthReg"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="900"
+      Title="WelcomePage" Background="#ffcf40">
+
+    <Grid>
+        <StackPanel VerticalAlignment="Top">
+            <TextBlock Style="{StaticResource textStyle}" 
+                       HorizontalAlignment="Center" TextAlignment="Center" Width="150" Margin="0,5">ДОБРО ПОЖАЛОВАТЬ!</TextBlock>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <CheckBox Name="cbCourse" Checked="cbCourse_Checked" Unchecked="cbCourse_Unchecked">Курс</CheckBox>
+                <CheckBox Name="cbTheme" Checked="cbTheme_Checked" Unchecked="cbTheme_Unchecked">Тема</CheckBox>
+                <CheckBox Name="cbSpeak" Checked="cbSpeak_Checked" Unchecked="cbSpeak_Unchecked">Ведущий</CheckBox>
+                <CheckBox Name="cbData"  Checked="cbData_Checked" Unchecked="cbData_Unchecked">Время</CheckBox>
+                <CheckBox Name="cbPrice" Checked="cbPrice_Checked" Unchecked="cbPrice_Unchecked">Стоимость</CheckBox>
+                <CheckBox Name="cbSite" Checked="cbSite_Checked" Unchecked="cbSite_Unchecked">Место проведения</CheckBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <DataGrid Name="dgLess" AutoGenerateColumns="False" Height="400" HorizontalAlignment="Left">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn x:Name="Cours" Header="Курс" Binding="{Binding Path = cour}"/>
+                        <DataGridTextColumn x:Name="Theme" Header="Тема" Binding="{Binding Path = them}"/>
+                        <DataGridTextColumn x:Name="Speak" Header="Ведущий" Binding="{Binding Path = speak}"/>
+                        <DataGridTextColumn x:Name="Data" Header="Время" Binding="{Binding Path = data}"/>
+                        <DataGridTextColumn x:Name="Price" Header="Стоимость" Binding="{Binding Path = price}"/>
+                        <DataGridTextColumn x:Name="Site" Header="Место проведения" Binding="{Binding Path = site}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <StackPanel Width="250">
+                    <TextBlock Margin="0,5" HorizontalAlignment="Center">Поиск записей</TextBlock>
+                    <RadioButton Margin="5,0" Name="rbCourse">Курс</RadioButton>
+                    <RadioButton Margin="5,0" Name="rbSite">Место проведения</RadioButton>
+                    <TextBox Name="tbSearch" Margin="5,5" HorizontalAlignment="Center" Width="200" Height="20"></TextBox>
+                    <Button Name="buttSearch" Margin="0,2" Width="80" Click="buttSearch_Click">Искать</Button>
+                    <Button Name="buttClear" Margin="0,2" Width="80" Click="buttClear_Click">Очистить</Button>
+                    <Button Name="buttExit" Margin="0,2" Width="80" Click="buttExit_Click">Выход</Button>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>

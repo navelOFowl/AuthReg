@@ -1,0 +1,31 @@
+﻿<Page x:Class="AuthReg.AdminMenu"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:AuthReg"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="AdminMenu" Background="#ffcf40">
+
+    <Grid>
+        <StackPanel Name="stMenu" Visibility="Visible">
+            <Button Name="buttUserShow" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttUserShow_Click">Посмотреть пользователей</Button>
+            <Button Name="buttExit" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttExit_Click">Выход</Button>
+        </StackPanel>
+        <StackPanel Name="stDgUsers" Visibility="Collapsed">
+            <DataGrid Name="dgUsers">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="cID" Header="IDUser" Binding="{Binding IDUser}"/>
+                    <DataGridTextColumn x:Name="cName" Header="Имя" Binding="{Binding Имя}"/>
+                    <DataGridTextColumn x:Name="cSur" Header="Фамилия" Binding="{Binding Фамилия}"/>
+                    <DataGridTextColumn x:Name="cSex" Header="Пол" Binding="{Binding Пол.Пол}"/>
+                    <DataGridTextColumn x:Name="cLog" Header="Логин" Binding="{Binding Логин}"/>
+                    <DataGridTextColumn x:Name="cPass" Header="Пароль" Binding="{Binding Пароль}"/>
+                    <DataGridTextColumn x:Name="cAdmin" Header="Администратор" Binding="{Binding Администратор}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Name="buttShowExit" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttShowExit_Click">В меню</Button>
+        </StackPanel>
+    </Grid>
+</Page>
