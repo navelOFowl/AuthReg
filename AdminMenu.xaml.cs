@@ -23,13 +23,12 @@ namespace AuthReg
         public AdminMenu()
         {
             InitializeComponent();
-            dgUsers.ItemsSource = Base.DB.Пользователи.ToList();
+            FrameCl.AdminFrame = AdminFrame;
         }
 
         private void buttUserShow_Click(object sender, RoutedEventArgs e)
         {
-            stMenu.Visibility = Visibility.Collapsed;
-            stDgUsers.Visibility = Visibility.Visible;
+            FrameCl.AdminFrame.Navigate(new adUsers());
         }
 
         private void buttExit_Click(object sender, RoutedEventArgs e)
@@ -37,10 +36,14 @@ namespace AuthReg
             FrameCl.mainFrame.Navigate(new Default());
         }
 
-        private void buttShowExit_Click(object sender, RoutedEventArgs e)
+        private void buttLess_Click(object sender, RoutedEventArgs e)
         {
-            stMenu.Visibility = Visibility.Visible;
-            stDgUsers.Visibility = Visibility.Collapsed;
+            FrameCl.AdminFrame.Navigate(new adShow());
+        }
+
+        private void buttSpeaks_Click(object sender, RoutedEventArgs e)
+        {
+            FrameCl.mainFrame.Navigate(new adSpCs());
         }
     }
 }

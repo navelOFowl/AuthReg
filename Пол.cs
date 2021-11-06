@@ -12,16 +12,18 @@ namespace AuthReg
     using System;
     using System.Collections.Generic;
     
-    public partial class Пользователи
+    public partial class Пол
     {
-        public int IDUser { get; set; }
-        public string Имя { get; set; }
-        public string Фамилия { get; set; }
-        public Nullable<int> Пол { get; set; }
-        public string Логин { get; set; }
-        public Nullable<int> Пароль { get; set; }
-        public Nullable<bool> Администратор { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Пол()
+        {
+            this.Пользователи = new HashSet<Пользователи>();
+        }
     
-        public virtual Пол Пол1 { get; set; }
+        public int IDPol { get; set; }
+        public string Пол1 { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Пользователи> Пользователи { get; set; }
     }
 }

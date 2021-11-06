@@ -4,7 +4,55 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище Model" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Ведущие">
+          <Key>
+            <PropertyRef Name="IDSpeak" />
+          </Key>
+          <Property Name="IDSpeak" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ФИОВедущего" Type="nchar" MaxLength="15" />
+        </EntityType>
+        <EntityType Name="Занятия">
+          <Key>
+            <PropertyRef Name="IDLesson" />
+          </Key>
+          <Property Name="IDLesson" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Курс" Type="int" />
+          <Property Name="Тема" Type="nchar" MaxLength="20" />
+          <Property Name="Ведущий" Type="int" />
+          <Property Name="Дата" Type="date" />
+          <Property Name="Стоимость" Type="int" />
+          <Property Name="Площадка" Type="int" />
+        </EntityType>
+        <EntityType Name="Курсы">
+          <Key>
+            <PropertyRef Name="IDCourse" />
+          </Key>
+          <Property Name="IDCourse" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="НазваниеКурса" Type="nchar" MaxLength="35" />
+        </EntityType>
+        <EntityType Name="КурсыВедущих">
+          <Key>
+            <PropertyRef Name="IDCs" />
+          </Key>
+          <Property Name="IDCs" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IDSpeak" Type="int" />
+          <Property Name="IDCourse" Type="int" />
+        </EntityType>
+        <EntityType Name="МестоПров">
+          <Key>
+            <PropertyRef Name="IDSite" />
+          </Key>
+          <Property Name="IDSite" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Площадка" Type="nchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="Пол">
+          <Key>
+            <PropertyRef Name="IDPol" />
+          </Key>
+          <Property Name="IDPol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Пол" Type="nchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="Пользователи">
           <Key>
             <PropertyRef Name="IDUser" />
@@ -17,14 +65,207 @@
           <Property Name="Пароль" Type="int" />
           <Property Name="Администратор" Type="bit" />
         </EntityType>
+        <Association Name="FK_Занятия_Ведущие">
+          <End Role="Ведущие" Type="Self.Ведущие" Multiplicity="0..1" />
+          <End Role="Занятия" Type="Self.Занятия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ведущие">
+              <PropertyRef Name="IDSpeak" />
+            </Principal>
+            <Dependent Role="Занятия">
+              <PropertyRef Name="Ведущий" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятия_Курсы">
+          <End Role="Курсы" Type="Self.Курсы" Multiplicity="0..1" />
+          <End Role="Занятия" Type="Self.Занятия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Курсы">
+              <PropertyRef Name="IDCourse" />
+            </Principal>
+            <Dependent Role="Занятия">
+              <PropertyRef Name="Курс" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятия_МестоПров">
+          <End Role="МестоПров" Type="Self.МестоПров" Multiplicity="0..1" />
+          <End Role="Занятия" Type="Self.Занятия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="МестоПров">
+              <PropertyRef Name="IDSite" />
+            </Principal>
+            <Dependent Role="Занятия">
+              <PropertyRef Name="Площадка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_КурсыВедущих_Ведущие">
+          <End Role="Ведущие" Type="Self.Ведущие" Multiplicity="0..1" />
+          <End Role="КурсыВедущих" Type="Self.КурсыВедущих" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ведущие">
+              <PropertyRef Name="IDSpeak" />
+            </Principal>
+            <Dependent Role="КурсыВедущих">
+              <PropertyRef Name="IDSpeak" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_КурсыВедущих_Курсы">
+          <End Role="Курсы" Type="Self.Курсы" Multiplicity="0..1" />
+          <End Role="КурсыВедущих" Type="Self.КурсыВедущих" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Курсы">
+              <PropertyRef Name="IDCourse" />
+            </Principal>
+            <Dependent Role="КурсыВедущих">
+              <PropertyRef Name="IDCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Пользователи_Пол">
+          <End Role="Пол" Type="Self.Пол" Multiplicity="0..1" />
+          <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пол">
+              <PropertyRef Name="IDPol" />
+            </Principal>
+            <Dependent Role="Пользователи">
+              <PropertyRef Name="Пол" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище ModelContainer">
+          <EntitySet Name="Ведущие" EntityType="Self.Ведущие" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Занятия" EntityType="Self.Занятия" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Курсы" EntityType="Self.Курсы" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="КурсыВедущих" EntityType="Self.КурсыВедущих" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="МестоПров" EntityType="Self.МестоПров" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Пол" EntityType="Self.Пол" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Пользователи" EntityType="Self.Пользователи" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Занятия_Ведущие" Association="Self.FK_Занятия_Ведущие">
+            <End Role="Ведущие" EntitySet="Ведущие" />
+            <End Role="Занятия" EntitySet="Занятия" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятия_Курсы" Association="Self.FK_Занятия_Курсы">
+            <End Role="Курсы" EntitySet="Курсы" />
+            <End Role="Занятия" EntitySet="Занятия" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятия_МестоПров" Association="Self.FK_Занятия_МестоПров">
+            <End Role="МестоПров" EntitySet="МестоПров" />
+            <End Role="Занятия" EntitySet="Занятия" />
+          </AssociationSet>
+          <AssociationSet Name="FK_КурсыВедущих_Ведущие" Association="Self.FK_КурсыВедущих_Ведущие">
+            <End Role="Ведущие" EntitySet="Ведущие" />
+            <End Role="КурсыВедущих" EntitySet="КурсыВедущих" />
+          </AssociationSet>
+          <AssociationSet Name="FK_КурсыВедущих_Курсы" Association="Self.FK_КурсыВедущих_Курсы">
+            <End Role="Курсы" EntitySet="Курсы" />
+            <End Role="КурсыВедущих" EntitySet="КурсыВедущих" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Пользователи_Пол" Association="Self.FK_Пользователи_Пол">
+            <End Role="Пол" EntitySet="Пол" />
+            <End Role="Пользователи" EntitySet="Пользователи" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="DataBase" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ведущие" EntityType="Model.Ведущие" />
+          <EntitySet Name="Занятия" EntityType="Model.Занятия" />
+          <EntitySet Name="Курсы" EntityType="Model.Курсы" />
+          <EntitySet Name="КурсыВедущих" EntityType="Model.КурсыВедущих" />
+          <EntitySet Name="МестоПров" EntityType="Model.МестоПров" />
+          <EntitySet Name="Пол" EntityType="Model.Пол" />
+          <EntitySet Name="Пользователи" EntityType="Model.Пользователи" />
+          <AssociationSet Name="FK_Занятия_Ведущие" Association="Model.FK_Занятия_Ведущие">
+            <End Role="Ведущие" EntitySet="Ведущие" />
+            <End Role="Занятия" EntitySet="Занятия" />
+          </AssociationSet>
+          <AssociationSet Name="FK_КурсыВедущих_Ведущие" Association="Model.FK_КурсыВедущих_Ведущие">
+            <End Role="Ведущие" EntitySet="Ведущие" />
+            <End Role="КурсыВедущих" EntitySet="КурсыВедущих" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятия_Курсы" Association="Model.FK_Занятия_Курсы">
+            <End Role="Курсы" EntitySet="Курсы" />
+            <End Role="Занятия" EntitySet="Занятия" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Занятия_МестоПров" Association="Model.FK_Занятия_МестоПров">
+            <End Role="МестоПров" EntitySet="МестоПров" />
+            <End Role="Занятия" EntitySet="Занятия" />
+          </AssociationSet>
+          <AssociationSet Name="FK_КурсыВедущих_Курсы" Association="Model.FK_КурсыВедущих_Курсы">
+            <End Role="Курсы" EntitySet="Курсы" />
+            <End Role="КурсыВедущих" EntitySet="КурсыВедущих" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Пользователи_Пол" Association="Model.FK_Пользователи_Пол">
+            <End Role="Пол" EntitySet="Пол" />
+            <End Role="Пользователи" EntitySet="Пользователи" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Ведущие">
+          <Key>
+            <PropertyRef Name="IDSpeak" />
+          </Key>
+          <Property Name="IDSpeak" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ФИОВедущего" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Занятия" Relationship="Model.FK_Занятия_Ведущие" FromRole="Ведущие" ToRole="Занятия" />
+          <NavigationProperty Name="КурсыВедущих" Relationship="Model.FK_КурсыВедущих_Ведущие" FromRole="Ведущие" ToRole="КурсыВедущих" />
+        </EntityType>
+        <EntityType Name="Занятия">
+          <Key>
+            <PropertyRef Name="IDLesson" />
+          </Key>
+          <Property Name="IDLesson" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Курс" Type="Int32" />
+          <Property Name="Тема" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Ведущий" Type="Int32" />
+          <Property Name="Дата" Type="DateTime" Precision="0" />
+          <Property Name="Стоимость" Type="Int32" />
+          <Property Name="Площадка" Type="Int32" />
+          <NavigationProperty Name="Ведущие" Relationship="Model.FK_Занятия_Ведущие" FromRole="Занятия" ToRole="Ведущие" />
+          <NavigationProperty Name="Курсы" Relationship="Model.FK_Занятия_Курсы" FromRole="Занятия" ToRole="Курсы" />
+          <NavigationProperty Name="МестоПров" Relationship="Model.FK_Занятия_МестоПров" FromRole="Занятия" ToRole="МестоПров" />
+        </EntityType>
+        <EntityType Name="Курсы">
+          <Key>
+            <PropertyRef Name="IDCourse" />
+          </Key>
+          <Property Name="IDCourse" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="НазваниеКурса" Type="String" MaxLength="35" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Занятия" Relationship="Model.FK_Занятия_Курсы" FromRole="Курсы" ToRole="Занятия" />
+          <NavigationProperty Name="КурсыВедущих" Relationship="Model.FK_КурсыВедущих_Курсы" FromRole="Курсы" ToRole="КурсыВедущих" />
+        </EntityType>
+        <EntityType Name="КурсыВедущих">
+          <Key>
+            <PropertyRef Name="IDCs" />
+          </Key>
+          <Property Name="IDCs" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IDSpeak" Type="Int32" />
+          <Property Name="IDCourse" Type="Int32" />
+          <NavigationProperty Name="Ведущие" Relationship="Model.FK_КурсыВедущих_Ведущие" FromRole="КурсыВедущих" ToRole="Ведущие" />
+          <NavigationProperty Name="Курсы" Relationship="Model.FK_КурсыВедущих_Курсы" FromRole="КурсыВедущих" ToRole="Курсы" />
+        </EntityType>
+        <EntityType Name="МестоПров">
+          <Key>
+            <PropertyRef Name="IDSite" />
+          </Key>
+          <Property Name="IDSite" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Площадка" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Занятия" Relationship="Model.FK_Занятия_МестоПров" FromRole="МестоПров" ToRole="Занятия" />
+        </EntityType>
+        <EntityType Name="Пол">
+          <Key>
+            <PropertyRef Name="IDPol" />
+          </Key>
+          <Property Name="IDPol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Пол1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Пользователи" Relationship="Model.FK_Пользователи_Пол" FromRole="Пол" ToRole="Пользователи" />
+        </EntityType>
         <EntityType Name="Пользователи">
           <Key>
             <PropertyRef Name="IDUser" />
@@ -36,26 +277,150 @@
           <Property Name="Логин" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
           <Property Name="Пароль" Type="Int32" />
           <Property Name="Администратор" Type="Boolean" />
+          <NavigationProperty Name="Пол1" Relationship="Model.FK_Пользователи_Пол" FromRole="Пользователи" ToRole="Пол" />
         </EntityType>
-        <EntityContainer Name="DataBase" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Пользователи" EntityType="Self.Пользователи" />
-        </EntityContainer>
-      </Schema>
+        <Association Name="FK_Занятия_Ведущие">
+          <End Type="Model.Ведущие" Role="Ведущие" Multiplicity="0..1" />
+          <End Type="Model.Занятия" Role="Занятия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ведущие">
+              <PropertyRef Name="IDSpeak" />
+            </Principal>
+            <Dependent Role="Занятия">
+              <PropertyRef Name="Ведущий" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_КурсыВедущих_Ведущие">
+          <End Type="Model.Ведущие" Role="Ведущие" Multiplicity="0..1" />
+          <End Type="Model.КурсыВедущих" Role="КурсыВедущих" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ведущие">
+              <PropertyRef Name="IDSpeak" />
+            </Principal>
+            <Dependent Role="КурсыВедущих">
+              <PropertyRef Name="IDSpeak" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятия_Курсы">
+          <End Type="Model.Курсы" Role="Курсы" Multiplicity="0..1" />
+          <End Type="Model.Занятия" Role="Занятия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Курсы">
+              <PropertyRef Name="IDCourse" />
+            </Principal>
+            <Dependent Role="Занятия">
+              <PropertyRef Name="Курс" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Занятия_МестоПров">
+          <End Type="Model.МестоПров" Role="МестоПров" Multiplicity="0..1" />
+          <End Type="Model.Занятия" Role="Занятия" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="МестоПров">
+              <PropertyRef Name="IDSite" />
+            </Principal>
+            <Dependent Role="Занятия">
+              <PropertyRef Name="Площадка" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_КурсыВедущих_Курсы">
+          <End Type="Model.Курсы" Role="Курсы" Multiplicity="0..1" />
+          <End Type="Model.КурсыВедущих" Role="КурсыВедущих" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Курсы">
+              <PropertyRef Name="IDCourse" />
+            </Principal>
+            <Dependent Role="КурсыВедущих">
+              <PropertyRef Name="IDCourse" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Пользователи_Пол">
+          <End Type="Model.Пол" Role="Пол" Multiplicity="0..1" />
+          <End Type="Model.Пользователи" Role="Пользователи" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Пол">
+              <PropertyRef Name="IDPol" />
+            </Principal>
+            <Dependent Role="Пользователи">
+              <PropertyRef Name="Пол" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="Хранилище ModelContainer" CdmEntityContainer="DataBase">
+          <EntitySetMapping Name="Ведущие">
+            <EntityTypeMapping TypeName="Model.Ведущие">
+              <MappingFragment StoreEntitySet="Ведущие">
+                <ScalarProperty Name="ФИОВедущего" ColumnName="ФИОВедущего" />
+                <ScalarProperty Name="IDSpeak" ColumnName="IDSpeak" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Занятия">
+            <EntityTypeMapping TypeName="Model.Занятия">
+              <MappingFragment StoreEntitySet="Занятия">
+                <ScalarProperty Name="Площадка" ColumnName="Площадка" />
+                <ScalarProperty Name="Стоимость" ColumnName="Стоимость" />
+                <ScalarProperty Name="Дата" ColumnName="Дата" />
+                <ScalarProperty Name="Ведущий" ColumnName="Ведущий" />
+                <ScalarProperty Name="Тема" ColumnName="Тема" />
+                <ScalarProperty Name="Курс" ColumnName="Курс" />
+                <ScalarProperty Name="IDLesson" ColumnName="IDLesson" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Курсы">
+            <EntityTypeMapping TypeName="Model.Курсы">
+              <MappingFragment StoreEntitySet="Курсы">
+                <ScalarProperty Name="НазваниеКурса" ColumnName="НазваниеКурса" />
+                <ScalarProperty Name="IDCourse" ColumnName="IDCourse" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="КурсыВедущих">
+            <EntityTypeMapping TypeName="Model.КурсыВедущих">
+              <MappingFragment StoreEntitySet="КурсыВедущих">
+                <ScalarProperty Name="IDCourse" ColumnName="IDCourse" />
+                <ScalarProperty Name="IDSpeak" ColumnName="IDSpeak" />
+                <ScalarProperty Name="IDCs" ColumnName="IDCs" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="МестоПров">
+            <EntityTypeMapping TypeName="Model.МестоПров">
+              <MappingFragment StoreEntitySet="МестоПров">
+                <ScalarProperty Name="Площадка" ColumnName="Площадка" />
+                <ScalarProperty Name="IDSite" ColumnName="IDSite" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Пол">
+            <EntityTypeMapping TypeName="Model.Пол">
+              <MappingFragment StoreEntitySet="Пол">
+                <ScalarProperty Name="Пол1" ColumnName="Пол" />
+                <ScalarProperty Name="IDPol" ColumnName="IDPol" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Пользователи">
             <EntityTypeMapping TypeName="Model.Пользователи">
               <MappingFragment StoreEntitySet="Пользователи">
-                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
-                <ScalarProperty Name="Имя" ColumnName="Имя" />
-                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
-                <ScalarProperty Name="Пол" ColumnName="Пол" />
-                <ScalarProperty Name="Логин" ColumnName="Логин" />
-                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
                 <ScalarProperty Name="Администратор" ColumnName="Администратор" />
+                <ScalarProperty Name="Пароль" ColumnName="Пароль" />
+                <ScalarProperty Name="Логин" ColumnName="Логин" />
+                <ScalarProperty Name="Пол" ColumnName="Пол" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -12,16 +12,13 @@ namespace AuthReg
     using System;
     using System.Collections.Generic;
     
-    public partial class Пользователи
+    public partial class КурсыВедущих
     {
-        public int IDUser { get; set; }
-        public string Имя { get; set; }
-        public string Фамилия { get; set; }
-        public Nullable<int> Пол { get; set; }
-        public string Логин { get; set; }
-        public Nullable<int> Пароль { get; set; }
-        public Nullable<bool> Администратор { get; set; }
+        public int IDCs { get; set; }
+        public Nullable<int> IDSpeak { get; set; }
+        public Nullable<int> IDCourse { get; set; }
     
-        public virtual Пол Пол1 { get; set; }
+        public virtual Ведущие Ведущие { get; set; }
+        public virtual Курсы Курсы { get; set; }
     }
 }

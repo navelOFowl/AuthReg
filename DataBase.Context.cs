@@ -25,6 +25,12 @@ namespace AuthReg
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Ведущие> Ведущие { get; set; }
+        public virtual DbSet<Занятия> Занятия { get; set; }
+        public virtual DbSet<Курсы> Курсы { get; set; }
+        public virtual DbSet<КурсыВедущих> КурсыВедущих { get; set; }
+        public virtual DbSet<МестоПров> МестоПров { get; set; }
+        public virtual DbSet<Пол> Пол { get; set; }
         public virtual DbSet<Пользователи> Пользователи { get; set; }
     }
 }

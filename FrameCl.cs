@@ -10,5 +10,6 @@ namespace AuthReg
     class FrameCl
     {
         public static Frame mainFrame;
+        public static Frame AdminFrame;
     }
 }
