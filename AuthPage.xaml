@@ -14,7 +14,7 @@
             <TextBox Name="tbLogAuth"></TextBox>
             <TextBlock Style="{StaticResource textStyle}" TextAlignment="Center" Width="100" Margin="0,5">Пароль</TextBlock>
             <PasswordBox Name="tbPassAuth"></PasswordBox>
-            <Button Name="buttAuthPage" Margin="0,5" Click="buttAuthPage_Click">Войти</Button>
+            <Button IsDefault="True" Name="buttAuthPage" Margin="0,5" Click="buttAuthPage_Click">Войти</Button>
             <Button Name="cancelAuthPage" Margin="0,5" Click="cancelAuthPage_Click">Вернуться</Button>
         </StackPanel>
     </Grid>

@@ -15,7 +15,8 @@
         </Grid.RowDefinitions>
         <StackPanel Name="stMenu" Visibility="Visible" Orientation="Horizontal">
             <Button Name="buttUserShow" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttUserShow_Click">Посмотреть пользователей</Button>
-            <Button Name="buttLess" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttLess_Click">Посмотреть занятия</Button>
+            <Button Name="buttLess" Width="120" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttLess_Click">Посмотреть занятия</Button>
+            <Button Name="buttCreateEdit" Width="100" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttCreateEdit_Click">Создать занятие</Button>
             <Button Name="buttSpeaks" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttSpeaks_Click">Посмотреть курсы ведущих</Button>
             <Button Name="buttExit" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttExit_Click">Выход</Button>
         </StackPanel>

@@ -43,7 +43,12 @@ namespace AuthReg
 
         private void buttSpeaks_Click(object sender, RoutedEventArgs e)
         {
-            FrameCl.mainFrame.Navigate(new adSpCs());
+            FrameCl.AdminFrame.Navigate(new adSpCs());
+        }
+
+        private void buttCreateEdit_Click(object sender, RoutedEventArgs e)
+        {
+            FrameCl.AdminFrame.Navigate(new createEdit());
         }
     }
 }
