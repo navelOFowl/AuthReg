@@ -16,7 +16,9 @@
             <TextBlock HorizontalAlignment="Center" FontSize="16">Введите название темы</TextBlock>
             <TextBox Name="tbTheme" Width="170" Height="20" HorizontalAlignment="Center" Margin="5,2"></TextBox>
             <TextBlock HorizontalAlignment="Center" FontSize="16">Ведущий</TextBlock>
-            <ComboBox Name="cbSpeaker" Width="170" Height="20" HorizontalAlignment="Center" Margin="5,2"></ComboBox>
+            <ComboBox Name="cbSpeaker" Width="170" Height="20" HorizontalAlignment="Center" Margin="5,2">
+                <ComboBoxItem>Ведущий...</ComboBoxItem>
+            </ComboBox>
             <TextBlock HorizontalAlignment="Center" FontSize="16">Выберете дату</TextBlock>
             <DatePicker Name="dpDate" Width="170" Height="25" HorizontalAlignment="Center" Margin="5,2"></DatePicker>
             <TextBlock HorizontalAlignment="Center" FontSize="16">Введите стоимость</TextBlock>

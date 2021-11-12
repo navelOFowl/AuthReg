@@ -20,6 +20,7 @@ namespace AuthReg
     /// </summary>
     public partial class createEdit : Page
     {
+        Занятия Lesson = new Занятия();
         int index = 0;
         public createEdit()
         {
@@ -30,13 +31,45 @@ namespace AuthReg
         }
         private void buttCreate_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (cbSpeaker.SelectedItem == null)
             {
-
+                MessageBox.Show("Ошибка! Проверьте ввод и повторите", "Создание занятия", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
-            catch
+            else
             {
-
+                try
+                {
+                    int idSpeaker = 1;
+                    switch (cbSpeaker.SelectedItem.ToString())
+                    {
+                        case "Мухина Л.В.":
+                            idSpeaker = 1;
+                            break;
+                        case "Мухин Н.А.":
+                            idSpeaker = 2;
+                            break;
+                        case "Дергачев Д.А.":
+                            idSpeaker = 3;
+                            break;
+                        case "Тараканова Н.А.":
+                            idSpeaker = 4;
+                            break;
+                    }
+                    Lesson.Курс = cbCourse.SelectedIndex + 1;
+                    Lesson.Тема = tbTheme.Text;
+                    Lesson.Ведущий = idSpeaker;
+                    Lesson.Дата = dpDate.SelectedDate;
+                    Lesson.Стоимость = Int32.Parse(tbPrive.Text);
+                    if (rbZoom.IsChecked == true) Lesson.Площадка = 2;
+                    if (rbDiscord.IsChecked == true) Lesson.Площадка = 1;
+                    Base.DB.Занятия.Add(Lesson);
+                    Base.DB.SaveChanges();
+                    MessageBox.Show("Занятие успешно создано!", "Создание занятия", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+                }
+                catch
+                {
+                    MessageBox.Show("Ошибка! Проверьте ввод и повторите", "Создание занятия", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             }
         }
 

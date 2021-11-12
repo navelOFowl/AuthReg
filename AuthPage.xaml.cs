@@ -36,18 +36,18 @@ namespace AuthReg
             {
                 if (User.Администратор == true)
                 {
-                    MessageBox.Show("Добро пожаловать на борт, капитан " + User.Имя + "!", "Авторизация");
+                    MessageBox.Show("Добро пожаловать на борт, капитан " + User.Имя, "Авторизация", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                     FrameCl.mainFrame.Navigate(new AdminMenu());
                 }
                 else
                 {
-                    MessageBox.Show("Здравствуйте, " + User.Имя + "!", "Авторизация");
+                    MessageBox.Show("Здравствуйте, " + User.Имя, "Авторизация", MessageBoxButton.OK, MessageBoxImage.Asterisk);
                     FrameCl.mainFrame.Navigate(new WelcomePage());
                 }
             }
             else
             {
-                MessageBox.Show("Пользователь не найден, повторите ввод или зарегистрируйтесь!", "Авторизация");
+                MessageBox.Show("Пользователь не найден, повторите ввод или зарегистрируйтесь!", "Авторизация", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
         }
 
