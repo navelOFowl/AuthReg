@@ -25,5 +25,16 @@ namespace AuthReg
             InitializeComponent();
             lvLess.ItemsSource = Base.DB.Занятия.ToList();
         }
+
+        private void ButtDeleteClick(object sender, RoutedEventArgs e)
+        {
+            Button button = (Button)sender; 
+            int lessInd = Convert.ToInt32(button.Uid); 
+            Занятия lessDelete = Base.DB.Занятия.FirstOrDefault(x => x.IDLesson == lessInd); 
+            Base.DB.Занятия.Remove(lessDelete); 
+            Base.DB.SaveChanges();
+            FrameCl.mainFrame.Navigate(new adShow()); 
+            MessageBox.Show("Занятие удалено!", "Удаление", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+        }
     }
 }
