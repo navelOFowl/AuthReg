@@ -22,12 +22,37 @@ namespace AuthReg
     {
         Занятия Lesson = new Занятия();
         int index = 0;
+        bool createFlag;
+        Занятия less;
         public createEdit()
         {
             InitializeComponent();
             cbCourse.ItemsSource = Base.DB.Курсы.ToList();
             cbCourse.SelectedValuePath = "IDCourse";
             cbCourse.DisplayMemberPath = "НазваниеКурса";
+        }
+        public createEdit(Занятия lessUpd)
+        {
+            InitializeComponent();
+            cbCourse.ItemsSource = Base.DB.Курсы.ToList();
+            cbCourse.SelectedValuePath = "IDCourse";
+            cbCourse.DisplayMemberPath = "НазваниеКурса";
+
+            less = lessUpd;
+
+            tbTheme.Text = lessUpd.Тема;
+            dpDate.SelectedDate = lessUpd.Дата;
+            tbPrive.Text = lessUpd.Стоимость.ToString();
+            if(lessUpd.Площадка == 1)
+            {
+                rbDiscord.IsChecked = true;
+            }
+            else
+            {
+                rbZoom.IsChecked = true;
+            }
+            cbCourse.SelectedIndex = (int)lessUpd.Курс - 1;
+            cbSpeaker.SelectedIndex = (int)lessUpd.Ведущий - 1;
         }
         private void buttCreate_Click(object sender, RoutedEventArgs e)
         {

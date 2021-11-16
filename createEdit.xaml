@@ -28,7 +28,7 @@
                 <RadioButton Name="rbZoom" Margin="4,2">Конференция ZOOM</RadioButton>
                 <RadioButton Name="rbDiscord" Margin="0,2">Конференция Discord</RadioButton>
             </StackPanel>
-            <Button Name="buttCreate" Width="100" Click="buttCreate_Click">Создать</Button>
+            <Button Name="buttCreate" Width="100" Click="buttCreate_Click">Записать</Button>
         </StackPanel>
     </Grid>
 </Page>

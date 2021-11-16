@@ -27,6 +27,7 @@
                                     <TextBlock Text="{Binding Price}" FontSize="14"/>
                                     <TextBlock Text="{Binding МестоПров.Площадка}" FontSize="14"/>
                                     <Button Name="buttDelete" Uid="{Binding IDLesson}" Click="ButtDeleteClick">Удалить</Button>
+                                    <Button Name="buttEdit" Uid="{Binding IDLesson}" Click="ButtEditClick">Редактировать</Button>
                             </StackPanel>
                             </Grid>
                         </Border>
