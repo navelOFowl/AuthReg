@@ -125,6 +125,9 @@
       <DependentUpon>RegPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="SpCs.cs" />
+    <Compile Include="UserCabinet.xaml.cs">
+      <DependentUpon>UserCabinet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Users.cs" />
     <Compile Include="WelcomePage.xaml.cs">
       <DependentUpon>WelcomePage.xaml</DependentUpon>
@@ -195,6 +198,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RegPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserCabinet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -42,7 +42,7 @@ namespace AuthReg
             Button buttEdit = (Button)sender;  
             int lessId = Convert.ToInt32(buttEdit.Uid);  
             Занятия lessUpd = Base.DB.Занятия.FirstOrDefault(x => x.IDLesson == lessId); 
-            FrameCl.mainFrame.Navigate(new createEdit(lessUpd));
+            FrameCl.AdminFrame.Navigate(new createEdit(lessUpd));
         }
     }
 }

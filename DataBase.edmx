@@ -18,7 +18,7 @@
           </Key>
           <Property Name="IDLesson" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Курс" Type="int" />
-          <Property Name="Тема" Type="nchar" MaxLength="20" />
+          <Property Name="Тема" Type="nvarchar" MaxLength="500" />
           <Property Name="Ведущий" Type="int" />
           <Property Name="Дата" Type="date" />
           <Property Name="Стоимость" Type="int" />
@@ -222,7 +222,7 @@
           </Key>
           <Property Name="IDLesson" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Курс" Type="Int32" />
-          <Property Name="Тема" Type="String" MaxLength="20" FixedLength="true" Unicode="true" />
+          <Property Name="Тема" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Ведущий" Type="Int32" />
           <Property Name="Дата" Type="DateTime" Precision="0" />
           <Property Name="Стоимость" Type="Int32" />

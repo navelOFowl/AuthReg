@@ -22,14 +22,14 @@ namespace AuthReg
     {
         Занятия Lesson = new Занятия();
         int index = 0;
-        bool createFlag;
-        Занятия less;
+        bool createFlag = false;
         public createEdit()
         {
             InitializeComponent();
             cbCourse.ItemsSource = Base.DB.Курсы.ToList();
             cbCourse.SelectedValuePath = "IDCourse";
             cbCourse.DisplayMemberPath = "НазваниеКурса";
+            createFlag = true;
         }
         public createEdit(Занятия lessUpd)
         {
@@ -38,7 +38,7 @@ namespace AuthReg
             cbCourse.SelectedValuePath = "IDCourse";
             cbCourse.DisplayMemberPath = "НазваниеКурса";
 
-            less = lessUpd;
+            Lesson = lessUpd;
 
             tbTheme.Text = lessUpd.Тема;
             dpDate.SelectedDate = lessUpd.Дата;
@@ -62,8 +62,6 @@ namespace AuthReg
             }
             else
             {
-                try
-                {
                     int idSpeaker = 1;
                     switch (cbSpeaker.SelectedItem.ToString())
                     {
@@ -87,14 +85,12 @@ namespace AuthReg
                     Lesson.Стоимость = Int32.Parse(tbPrive.Text);
                     if (rbZoom.IsChecked == true) Lesson.Площадка = 2;
                     if (rbDiscord.IsChecked == true) Lesson.Площадка = 1;
-                    Base.DB.Занятия.Add(Lesson);
+                    if(createFlag == true)
+                    {
+                        Base.DB.Занятия.Add(Lesson);
+                    }
                     Base.DB.SaveChanges();
-                    MessageBox.Show("Занятие успешно создано!", "Создание занятия", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                }
-                catch
-                {
-                    MessageBox.Show("Ошибка! Проверьте ввод и повторите", "Создание занятия", MessageBoxButton.OK, MessageBoxImage.Warning);
-                }
+                    MessageBox.Show("Занятие успешно записано!", "Запись занятия", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
         }
 

@@ -4,12 +4,12 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="22481f0208084d9b906f55c9896d913a" Name="Diagram1">
-        <EntityTypeShape EntityType="Model.Ведущие" Width="1.5" PointX="9.75" PointY="4.5" />
-        <EntityTypeShape EntityType="Model.Занятия" Width="1.5" PointX="9.75" PointY="1" />
-        <EntityTypeShape EntityType="Model.Курсы" Width="1.5" PointX="5.875" PointY="0.875" />
-        <EntityTypeShape EntityType="Model.КурсыВедущих" Width="1.5" PointX="5.875" PointY="4.25" />
-        <EntityTypeShape EntityType="Model.МестоПров" Width="1.5" PointX="12.875" PointY="1.375" />
+      <Diagram DiagramId="22481f0208084d9b906f55c9896d913a" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="Model.Ведущие" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Model.Занятия" Width="1.5" PointX="3" PointY="3.375" />
+        <EntityTypeShape EntityType="Model.Курсы" Width="1.5" PointX="0.75" PointY="3.875" />
+        <EntityTypeShape EntityType="Model.КурсыВедущих" Width="1.5" PointX="6" PointY="3.875" />
+        <EntityTypeShape EntityType="Model.МестоПров" Width="1.5" PointX="0.75" PointY="7.25" />
         <EntityTypeShape EntityType="Model.Пол" Width="1.5" PointX="5.75" PointY="7.25" />
         <EntityTypeShape EntityType="Model.Пользователи" Width="1.5" PointX="8" PointY="6.875" />
         <AssociationConnector Association="Model.FK_Занятия_Ведущие" />
