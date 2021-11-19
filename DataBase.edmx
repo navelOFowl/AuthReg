@@ -65,6 +65,14 @@
           <Property Name="Пароль" Type="int" />
           <Property Name="Администратор" Type="bit" />
         </EntityType>
+        <EntityType Name="ФотоПользователя">
+          <Key>
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDUser" Type="int" Nullable="false" />
+          <Property Name="Фото" Type="varbinary(max)" />
+          <Property Name="Путь" Type="nvarchar" MaxLength="100" />
+        </EntityType>
         <Association Name="FK_Занятия_Ведущие">
           <End Role="Ведущие" Type="Self.Ведущие" Multiplicity="0..1" />
           <End Role="Занятия" Type="Self.Занятия" Multiplicity="*" />
@@ -137,6 +145,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ФотоПользователя_Пользователи">
+          <End Role="Пользователи" Type="Self.Пользователи" Multiplicity="1" />
+          <End Role="ФотоПользователя" Type="Self.ФотоПользователя" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="IDUser" />
+            </Principal>
+            <Dependent Role="ФотоПользователя">
+              <PropertyRef Name="IDUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="Хранилище ModelContainer">
           <EntitySet Name="Ведущие" EntityType="Self.Ведущие" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Занятия" EntityType="Self.Занятия" Schema="dbo" store:Type="Tables" />
@@ -145,6 +165,7 @@
           <EntitySet Name="МестоПров" EntityType="Self.МестоПров" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Пол" EntityType="Self.Пол" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Пользователи" EntityType="Self.Пользователи" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ФотоПользователя" EntityType="Self.ФотоПользователя" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_Занятия_Ведущие" Association="Self.FK_Занятия_Ведущие">
             <End Role="Ведущие" EntitySet="Ведущие" />
             <End Role="Занятия" EntitySet="Занятия" />
@@ -169,6 +190,10 @@
             <End Role="Пол" EntitySet="Пол" />
             <End Role="Пользователи" EntitySet="Пользователи" />
           </AssociationSet>
+          <AssociationSet Name="FK_ФотоПользователя_Пользователи" Association="Self.FK_ФотоПользователя_Пользователи">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="ФотоПользователя" EntitySet="ФотоПользователя" />
+          </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -182,6 +207,7 @@
           <EntitySet Name="МестоПров" EntityType="Model.МестоПров" />
           <EntitySet Name="Пол" EntityType="Model.Пол" />
           <EntitySet Name="Пользователи" EntityType="Model.Пользователи" />
+          <EntitySet Name="ФотоПользователя" EntityType="Model.ФотоПользователя" />
           <AssociationSet Name="FK_Занятия_Ведущие" Association="Model.FK_Занятия_Ведущие">
             <End Role="Ведущие" EntitySet="Ведущие" />
             <End Role="Занятия" EntitySet="Занятия" />
@@ -205,6 +231,10 @@
           <AssociationSet Name="FK_Пользователи_Пол" Association="Model.FK_Пользователи_Пол">
             <End Role="Пол" EntitySet="Пол" />
             <End Role="Пользователи" EntitySet="Пользователи" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ФотоПользователя_Пользователи" Association="Model.FK_ФотоПользователя_Пользователи">
+            <End Role="Пользователи" EntitySet="Пользователи" />
+            <End Role="ФотоПользователя" EntitySet="ФотоПользователя" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Ведущие">
@@ -278,6 +308,16 @@
           <Property Name="Пароль" Type="Int32" />
           <Property Name="Администратор" Type="Boolean" />
           <NavigationProperty Name="Пол1" Relationship="Model.FK_Пользователи_Пол" FromRole="Пользователи" ToRole="Пол" />
+          <NavigationProperty Name="ФотоПользователя" Relationship="Model.FK_ФотоПользователя_Пользователи" FromRole="Пользователи" ToRole="ФотоПользователя" />
+        </EntityType>
+        <EntityType Name="ФотоПользователя">
+          <Key>
+            <PropertyRef Name="IDUser" />
+          </Key>
+          <Property Name="IDUser" Type="Int32" Nullable="false" />
+          <Property Name="Фото" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="Путь" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Пользователи" Relationship="Model.FK_ФотоПользователя_Пользователи" FromRole="ФотоПользователя" ToRole="Пользователи" />
         </EntityType>
         <Association Name="FK_Занятия_Ведущие">
           <End Type="Model.Ведущие" Role="Ведущие" Multiplicity="0..1" />
@@ -351,6 +391,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ФотоПользователя_Пользователи">
+          <End Type="Model.Пользователи" Role="Пользователи" Multiplicity="1" />
+          <End Type="Model.ФотоПользователя" Role="ФотоПользователя" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Пользователи">
+              <PropertyRef Name="IDUser" />
+            </Principal>
+            <Dependent Role="ФотоПользователя">
+              <PropertyRef Name="IDUser" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -420,6 +472,15 @@
                 <ScalarProperty Name="Пол" ColumnName="Пол" />
                 <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
                 <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="IDUser" ColumnName="IDUser" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ФотоПользователя">
+            <EntityTypeMapping TypeName="Model.ФотоПользователя">
+              <MappingFragment StoreEntitySet="ФотоПользователя">
+                <ScalarProperty Name="Путь" ColumnName="Путь" />
+                <ScalarProperty Name="Фото" ColumnName="Фото" />
                 <ScalarProperty Name="IDUser" ColumnName="IDUser" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -111,6 +111,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataBase.edmx</DependentUpon>
     </Compile>
+    <Compile Include="EditWin.xaml.cs">
+      <DependentUpon>EditWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Lessons.cs" />
     <Compile Include="AdminMenu.xaml.cs">
       <DependentUpon>AdminMenu.xaml</DependentUpon>
@@ -153,6 +156,9 @@
     <Compile Include="Пользователи.cs">
       <DependentUpon>DataBase.tt</DependentUpon>
     </Compile>
+    <Compile Include="ФотоПользователя.cs">
+      <DependentUpon>DataBase.tt</DependentUpon>
+    </Compile>
     <Page Include="adShow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -174,6 +180,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Default.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -254,6 +264,7 @@
       <DependentUpon>DataBase.edmx</DependentUpon>
       <LastGenOutput>DataBase.cs</LastGenOutput>
     </Content>
+    <Resource Include="Images\NoPhoto.png" />
     <Resource Include="Properties\Image1.jpeg" />
     <Resource Include="Properties\logo.ico" />
     <None Include="Resources\logo.ico" />

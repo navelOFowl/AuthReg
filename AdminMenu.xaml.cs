@@ -20,9 +20,11 @@ namespace AuthReg
     /// </summary>
     public partial class AdminMenu : Page
     {
-        public AdminMenu()
+        private Пользователи _user;
+        public AdminMenu(Пользователи user)
         {
             InitializeComponent();
+            _user = user;
             FrameCl.AdminFrame = AdminFrame;
         }
 
@@ -49,6 +51,11 @@ namespace AuthReg
         private void buttCreateEdit_Click(object sender, RoutedEventArgs e)
         {
             FrameCl.AdminFrame.Navigate(new createEdit());
+        }
+
+        private void buttCab_Click(object sender, RoutedEventArgs e)
+        {
+            FrameCl.mainFrame.Navigate(new UserCabinet(_user));
         }
     }
 }

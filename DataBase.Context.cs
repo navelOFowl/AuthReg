@@ -32,5 +32,6 @@ namespace AuthReg
         public virtual DbSet<МестоПров> МестоПров { get; set; }
         public virtual DbSet<Пол> Пол { get; set; }
         public virtual DbSet<Пользователи> Пользователи { get; set; }
+        public virtual DbSet<ФотоПользователя> ФотоПользователя { get; set; }
     }
 }

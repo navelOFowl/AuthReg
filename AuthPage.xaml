@@ -11,9 +11,9 @@
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock Style="{StaticResource textStyle}" TextAlignment="Center" Width="100" Margin="0,5">Логин</TextBlock>
-            <TextBox Name="tbLogAuth">dimasik</TextBox>
+            <TextBox Name="tbLogAuth">eugene</TextBox>
             <TextBlock Style="{StaticResource textStyle}" TextAlignment="Center" Width="100" Margin="0,5">Пароль</TextBlock>
-            <PasswordBox Name="tbPassAuth" Password="Abcd12!a"></PasswordBox>
+            <PasswordBox Name="tbPassAuth" Password="Eugene26o!"></PasswordBox>
             <Button IsDefault="True" Name="buttAuthPage" Margin="0,5" Click="buttAuthPage_Click">Войти</Button>
             <Button Name="cancelAuthPage" Margin="0,5" Click="cancelAuthPage_Click">Вернуться</Button>
         </StackPanel>

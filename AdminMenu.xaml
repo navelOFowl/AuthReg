@@ -10,15 +10,20 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
+            <RowDefinition Height="80*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
-        <StackPanel Name="stMenu" Visibility="Visible" Orientation="Horizontal">
-            <Button Name="buttUserShow" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttUserShow_Click">Посмотреть пользователей</Button>
-            <Button Name="buttLess" Width="120" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttLess_Click">Посмотреть занятия</Button>
-            <Button Name="buttCreateEdit" Width="100" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttCreateEdit_Click">Создать занятие</Button>
-            <Button Name="buttSpeaks" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttSpeaks_Click">Посмотреть курсы ведущих</Button>
-            <Button Name="buttExit" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttExit_Click">Выход</Button>
+        <StackPanel Name="stMenu" Visibility="Visible">
+            <StackPanel Orientation="Horizontal">
+                <Button Name="buttUserShow" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttUserShow_Click">Посмотреть пользователей</Button>
+                <Button Name="buttLess" Width="120" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttLess_Click">Посмотреть занятия</Button>
+                <Button Name="buttCreateEdit" Width="100" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttCreateEdit_Click">Создать занятие</Button>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Button Name="buttSpeaks" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttSpeaks_Click">Посмотреть курсы ведущих</Button>
+                <Button Name="buttCab" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttCab_Click">Личный кабинет</Button>
+                <Button Name="buttExit" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttExit_Click">Выход</Button>
+            </StackPanel>
         </StackPanel>
         <Frame x:Name="AdminFrame" Grid.Row="1"></Frame>
     </Grid>

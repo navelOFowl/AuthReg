@@ -37,12 +37,12 @@ namespace AuthReg
                 if (User.Администратор == true)
                 {
                     MessageBox.Show("Добро пожаловать на борт, капитан " + User.Имя, "Авторизация", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                    FrameCl.mainFrame.Navigate(new AdminMenu());
+                    FrameCl.mainFrame.Navigate(new AdminMenu(User));
                 }
                 else
                 {
                     MessageBox.Show("Здравствуйте, " + User.Имя, "Авторизация", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                    FrameCl.mainFrame.Navigate(new WelcomePage());
+                    FrameCl.mainFrame.Navigate(new UserCabinet(User));
                 }
             }
             else
