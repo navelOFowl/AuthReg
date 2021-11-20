@@ -10,10 +10,12 @@
 
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBlock TextAlignment="Center" Width="100" Margin="0,5">админ - dimasik</TextBlock>
             <TextBlock Style="{StaticResource textStyle}" TextAlignment="Center" Width="100" Margin="0,5">Логин</TextBlock>
-            <TextBox Name="tbLogAuth">eugene</TextBox>
+            <TextBox Name="tbLogAuth">alex</TextBox>
+            <TextBlock TextAlignment="Center" Width="100" Margin="0,5">админ Abcd12!a</TextBlock>
             <TextBlock Style="{StaticResource textStyle}" TextAlignment="Center" Width="100" Margin="0,5">Пароль</TextBlock>
-            <PasswordBox Name="tbPassAuth" Password="Eugene26o!"></PasswordBox>
+            <PasswordBox Name="tbPassAuth" Password="Alex26o!"></PasswordBox>
             <Button IsDefault="True" Name="buttAuthPage" Margin="0,5" Click="buttAuthPage_Click">Войти</Button>
             <Button Name="cancelAuthPage" Margin="0,5" Click="cancelAuthPage_Click">Вернуться</Button>
         </StackPanel>

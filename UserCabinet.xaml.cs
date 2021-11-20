@@ -23,12 +23,14 @@ namespace AuthReg
     /// </summary>
     public partial class UserCabinet : Page
     {
+        private bool _tumbler;
         private Пользователи _user;
         private string _path;
         private ФотоПользователя _userPic;
-        public UserCabinet(Пользователи User)
+        public UserCabinet(Пользователи User, bool tumbler)
         {
             InitializeComponent();
+            _tumbler = tumbler;
             _user = User;
             tbName.Text = _user.Имя;
             tbSurname.Text = _user.Фамилия;
@@ -52,7 +54,7 @@ namespace AuthReg
         {
             EditWin editWin = new EditWin(_user);
             editWin.ShowDialog();
-            FrameCl.mainFrame.Navigate(new UserCabinet(_user));
+            FrameCl.mainFrame.Navigate(new UserCabinet(_user, _tumbler));
         }
 
         private void PicEditClick(object sender, RoutedEventArgs e)
@@ -85,12 +87,19 @@ namespace AuthReg
                 Base.DB.SaveChanges();
                 MessageBox.Show("Фото обновлено!", "Личный кабинет", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             }
-            FrameCl.mainFrame.Navigate(new UserCabinet(_user));
+            FrameCl.mainFrame.Navigate(new UserCabinet(_user, _tumbler));
         }
 
         private void ButtExitClick(object sender, RoutedEventArgs e)
         {
-            FrameCl.mainFrame.Navigate(new Default());
+            if (_tumbler == true)
+            {
+                FrameCl.mainFrame.Navigate(new AdminMenu(_user));
+            }
+            else
+            {
+                FrameCl.mainFrame.Navigate(new Default());
+            }
         }
     }
 }

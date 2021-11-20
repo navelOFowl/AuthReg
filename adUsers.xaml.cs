@@ -25,10 +25,5 @@ namespace AuthReg
             InitializeComponent();
             dgUsers.ItemsSource = Base.DB.Пользователи.ToList();
         }
-
-        private void buttShowExit_Click(object sender, RoutedEventArgs e)
-        {
-            FrameCl.mainFrame.Navigate(new Default());
-        }
     }
 }

@@ -42,7 +42,7 @@ namespace AuthReg
                 else
                 {
                     MessageBox.Show("Здравствуйте, " + User.Имя, "Авторизация", MessageBoxButton.OK, MessageBoxImage.Asterisk);
-                    FrameCl.mainFrame.Navigate(new UserCabinet(User));
+                    FrameCl.mainFrame.Navigate(new UserCabinet(User, false));
                 }
             }
             else

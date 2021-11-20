@@ -55,7 +55,7 @@ namespace AuthReg
 
         private void buttCab_Click(object sender, RoutedEventArgs e)
         {
-            FrameCl.mainFrame.Navigate(new UserCabinet(_user));
+            FrameCl.mainFrame.Navigate(new UserCabinet(_user, true));
         }
     }
 }

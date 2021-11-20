@@ -21,7 +21,7 @@
                 <DataGridTextColumn x:Name="cAdmin" Header="Администратор" Binding="{Binding Администратор}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Name="buttShowExit" Width="170" Height="25" HorizontalAlignment="Left" Margin="5" Click="buttShowExit_Click">В меню</Button>
+        
         </StackPanel>
     </Grid>
 </Page>
