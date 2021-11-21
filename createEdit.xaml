@@ -10,7 +10,7 @@
 
     <Grid>
         <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
-            <TextBlock HorizontalAlignment="Center" FontSize="20">Создание нового занятия</TextBlock>
+            <TextBlock HorizontalAlignment="Center" FontSize="20">Запись занятия</TextBlock>
             <TextBlock HorizontalAlignment="Center" FontSize="16">Выберете курс</TextBlock>
             <ComboBox SelectionChanged="lbCourse_SelectionChanged" Name="cbCourse" Width="170" Height="20" HorizontalAlignment="Center" Margin="5,2"></ComboBox>
             <TextBlock HorizontalAlignment="Center" FontSize="16">Введите название темы</TextBlock>
