@@ -34,9 +34,9 @@ namespace AuthReg
             _user.Имя = tbNewName.Text;
             _user.Фамилия = tbNewSurname.Text;
             _user.Логин = tbNewLogin.Text;
-            _user.Пароль = tbNewPass.GetHashCode();
+            _user.Пароль = tbNewPass.Password.GetHashCode();
             Base.DB.SaveChanges();
-            MessageBox.Show("Данные обнавлены!", "Личный кабинет", MessageBoxButton.OK, MessageBoxImage.Asterisk);
+            MessageBox.Show("Данные обновлены!", "Личный кабинет", MessageBoxButton.OK, MessageBoxImage.Asterisk);
             this.Close();
         }
     }

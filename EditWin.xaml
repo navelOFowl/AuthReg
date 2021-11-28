@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AuthReg"
         mc:Ignorable="d"
-        Title="EditWin" Height="270" Width="200" Background="#ecb617">
+        Title="Изменить данные" Height="270" Width="200" Background="#ecb617">
     <Grid>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <TextBlock>Имя:</TextBlock>
