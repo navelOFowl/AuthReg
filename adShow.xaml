@@ -9,6 +9,26 @@
       Title="adShow">
 
     <Grid>
+        <StackPanel>
+            
+        <StackPanel Orientation="Horizontal">
+                <TextBlock>Фильтрация</TextBlock>
+                <ComboBox Name="cbFilter" Width="100" SelectionChanged="cbFilter_SelectionChanged">
+                    <ComboBoxItem IsSelected="True">Все ведущие</ComboBoxItem>
+                    <ComboBoxItem>Мухина Л.В.</ComboBoxItem>
+                    <ComboBoxItem>Мухин Н.А.</ComboBoxItem>
+                    <ComboBoxItem>Дергачев Д.А.</ComboBoxItem>
+                    <ComboBoxItem>Тараканова Н.А.</ComboBoxItem>
+                </ComboBox>
+                <CheckBox Name="cbSharp" IsChecked="False" Checked="cbSharp_Checked" Unchecked="cbSharp_Unchecked">C#</CheckBox>
+                <CheckBox Name="cbC" IsChecked="False" Checked="cbC_Checked" Unchecked="cbC_Unchecked">C</CheckBox>
+                <CheckBox Name="cbApp" IsChecked="False" Checked="cbApp_Checked" Unchecked="cbApp_Unchecked">Моб. приложения</CheckBox>
+                <CheckBox Name="cbGraph" IsChecked="False" Checked="cbGraph_Checked" Unchecked="cbGraph_Unchecked">Комп. графика</CheckBox>
+                <CheckBox Name="cbTest" IsChecked="False" Checked="cbTest_Checked" Unchecked="cbTest_Unchecked">Тестирование</CheckBox>
+                <CheckBox Name="cbMath" IsChecked="False" Checked="cbMath_Checked" Unchecked="cbMath_Unchecked">Дис. мат.</CheckBox>
+                <DatePicker Name="tbDateFilter" Width="150" Margin="5,0" SelectedDateChanged="tbDateFilter_SelectedDateChanged"></DatePicker>
+                <TextBlock Name="tbCount">Найдено записей: </TextBlock>
+        </StackPanel>
         <ListView x:Name="lvLess">
                 <ListView.ItemsPanel>
                     <ItemsPanelTemplate>
@@ -34,5 +54,6 @@
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
+        </StackPanel>
     </Grid>
 </Page>
