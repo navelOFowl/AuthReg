@@ -25,6 +25,13 @@ namespace AuthReg
         {
             InitializeComponent();
             lvLess.ItemsSource = LessStart;
+            cbFilter.Items.Add("Все занятия");
+            List<Ведущие> speakers = Base.DB.Ведущие.ToList();
+            for(int i = 0; i < LessStart.Count(); i++)
+            {
+                cbFilter.Items.Add(speakers[i].ФИОВедущего);
+            }
+            cbFilter.SelectedIndex = 0;
             tbCount.Text = "Найдено записей: " + LessStart.Count + "";
         }
         
@@ -53,29 +60,25 @@ namespace AuthReg
             int index = cbFilter.SelectedIndex;
             if (index != 0)
             {
-                LessFilter = LessStart.Where(x => x.IDLesson == index).ToList();
+                LessFilter = LessStart.Where(x => x.Ведущий == index).ToList();
             }
             else
             {
                 LessFilter = LessStart;
             }
 
-            if (tbDateFilter != null)
+            if (!string.IsNullOrWhiteSpace(tbDateFilter.SelectedDate.ToString()))
             {
                 LessFilter = LessFilter.Where(x => x.Дата == tbDateFilter.SelectedDate).ToList();
             }
 
-            if (cbC.IsChecked == true)
-            {
-                LessFilter = LessFilter.Where(x => x.Курс == 2).ToList();
-            }
-            else
-            {
-                MessageBox.Show("ТЕСТ");
-            }
             if (cbSharp.IsChecked == true)
             {
                 LessFilter = LessFilter.Where(x => x.Курс == 1).ToList();
+            }
+            if (cbC.IsChecked == true)
+            {
+                LessFilter = LessFilter.Where(x => x.Курс == 2).ToList();
             }
             if (cbApp.IsChecked == true)
             {
@@ -93,6 +96,8 @@ namespace AuthReg
             {
                 LessFilter = LessFilter.Where(x => x.Курс == 6).ToList();
             }
+            lvLess.ItemsSource = LessFilter;
+            tbCount.Text = "Найдено записей: " + LessFilter.Count + "";
         }
 
         private void cbFilter_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -163,6 +168,41 @@ namespace AuthReg
         private void cbMath_Unchecked(object sender, RoutedEventArgs e)
         {
             Filter();
+        }
+
+        private void buttUp_Click(object sender, RoutedEventArgs e)
+        {
+            if(cbSortTheme.IsChecked == true)
+            {
+                LessFilter.Sort((x, y) => x.Тема.CompareTo(y.Тема));
+            }
+            if (cbSortDate.IsChecked == true)
+            {
+                LessFilter.OrderBy(x => x.Дата);
+            }
+            if (cbSortPrice.IsChecked == true)
+            {
+                LessFilter.OrderBy(x => x.Стоимость);
+            }
+            lvLess.Items.Refresh();
+        }
+
+        private void ButtDown_Click(object sender, RoutedEventArgs e)
+        {
+            if (cbSortTheme.IsChecked == true)
+            {
+                LessFilter.Sort((x, y) => x.Тема.CompareTo(y.Тема));
+            }
+            if (cbSortDate.IsChecked == true)
+            {
+                LessFilter.Sort((x, y) => x.Дата.CompareTo(y.Дата));
+            }
+            if (cbSortPrice.IsChecked == true)
+            {
+                LessFilter.OrderBy(x => x.Стоимость);
+            }
+            LessFilter.Reverse();
+            lvLess.Items.Refresh();
         }
     }
 }
