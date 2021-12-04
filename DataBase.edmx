@@ -17,12 +17,12 @@
             <PropertyRef Name="IDLesson" />
           </Key>
           <Property Name="IDLesson" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Курс" Type="int" />
-          <Property Name="Тема" Type="nvarchar" MaxLength="500" />
-          <Property Name="Ведущий" Type="int" />
-          <Property Name="Дата" Type="date" />
-          <Property Name="Стоимость" Type="int" />
-          <Property Name="Площадка" Type="int" />
+          <Property Name="Курс" Type="int" Nullable="false" />
+          <Property Name="Тема" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Ведущий" Type="int" Nullable="false" />
+          <Property Name="Дата" Type="date" Nullable="false" />
+          <Property Name="Стоимость" Type="int" Nullable="false" />
+          <Property Name="Площадка" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Курсы">
           <Key>
@@ -74,7 +74,7 @@
           <Property Name="Путь" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <Association Name="FK_Занятия_Ведущие">
-          <End Role="Ведущие" Type="Self.Ведущие" Multiplicity="0..1" />
+          <End Role="Ведущие" Type="Self.Ведущие" Multiplicity="1" />
           <End Role="Занятия" Type="Self.Занятия" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ведущие">
@@ -86,7 +86,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Занятия_Курсы">
-          <End Role="Курсы" Type="Self.Курсы" Multiplicity="0..1" />
+          <End Role="Курсы" Type="Self.Курсы" Multiplicity="1" />
           <End Role="Занятия" Type="Self.Занятия" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Курсы">
@@ -98,7 +98,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Занятия_МестоПров">
-          <End Role="МестоПров" Type="Self.МестоПров" Multiplicity="0..1" />
+          <End Role="МестоПров" Type="Self.МестоПров" Multiplicity="1" />
           <End Role="Занятия" Type="Self.Занятия" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="МестоПров">
@@ -251,12 +251,12 @@
             <PropertyRef Name="IDLesson" />
           </Key>
           <Property Name="IDLesson" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Курс" Type="Int32" />
-          <Property Name="Тема" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Ведущий" Type="Int32" />
-          <Property Name="Дата" Type="DateTime" Precision="0" />
-          <Property Name="Стоимость" Type="Int32" />
-          <Property Name="Площадка" Type="Int32" />
+          <Property Name="Курс" Type="Int32" Nullable="false" />
+          <Property Name="Тема" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Ведущий" Type="Int32" Nullable="false" />
+          <Property Name="Дата" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Стоимость" Type="Int32" Nullable="false" />
+          <Property Name="Площадка" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Ведущие" Relationship="Model.FK_Занятия_Ведущие" FromRole="Занятия" ToRole="Ведущие" />
           <NavigationProperty Name="Курсы" Relationship="Model.FK_Занятия_Курсы" FromRole="Занятия" ToRole="Курсы" />
           <NavigationProperty Name="МестоПров" Relationship="Model.FK_Занятия_МестоПров" FromRole="Занятия" ToRole="МестоПров" />
@@ -320,7 +320,7 @@
           <NavigationProperty Name="Пользователи" Relationship="Model.FK_ФотоПользователя_Пользователи" FromRole="ФотоПользователя" ToRole="Пользователи" />
         </EntityType>
         <Association Name="FK_Занятия_Ведущие">
-          <End Type="Model.Ведущие" Role="Ведущие" Multiplicity="0..1" />
+          <End Type="Model.Ведущие" Role="Ведущие" Multiplicity="1" />
           <End Type="Model.Занятия" Role="Занятия" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Ведущие">
@@ -344,7 +344,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Занятия_Курсы">
-          <End Type="Model.Курсы" Role="Курсы" Multiplicity="0..1" />
+          <End Type="Model.Курсы" Role="Курсы" Multiplicity="1" />
           <End Type="Model.Занятия" Role="Занятия" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Курсы">
@@ -356,7 +356,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Занятия_МестоПров">
-          <End Type="Model.МестоПров" Role="МестоПров" Multiplicity="0..1" />
+          <End Type="Model.МестоПров" Role="МестоПров" Multiplicity="1" />
           <End Type="Model.Занятия" Role="Занятия" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="МестоПров">

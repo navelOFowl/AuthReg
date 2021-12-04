@@ -21,6 +21,7 @@ namespace AuthReg
     public partial class adShow : Page
     {
         List<Занятия> LessStart = Base.DB.Занятия.ToList();
+        PageChange pc = new PageChange();
         public adShow()
         {
             InitializeComponent();
@@ -33,6 +34,7 @@ namespace AuthReg
             }
             cbFilter.SelectedIndex = 0;
             tbCount.Text = "Найдено записей: " + LessStart.Count + "";
+            DataContext = pc;
         }
         
         private void ButtDeleteClick(object sender, RoutedEventArgs e)
@@ -178,11 +180,11 @@ namespace AuthReg
             }
             if (cbSortDate.IsChecked == true)
             {
-                LessFilter.OrderBy(x => x.Дата);
+                LessFilter.Sort((x, y) => x.Дата.CompareTo(y.Дата));
             }
             if (cbSortPrice.IsChecked == true)
             {
-                LessFilter.OrderBy(x => x.Стоимость);
+                LessFilter.Sort((x, y) => x.Стоимость.CompareTo(y.Стоимость));
             }
             lvLess.Items.Refresh();
         }
@@ -199,10 +201,41 @@ namespace AuthReg
             }
             if (cbSortPrice.IsChecked == true)
             {
-                LessFilter.OrderBy(x => x.Стоимость);
+                LessFilter.Sort((x, y) => x.Стоимость.CompareTo(y.Стоимость));
             }
             LessFilter.Reverse();
             lvLess.Items.Refresh();
+        }
+        private void GoPage_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            TextBlock tb = (TextBlock)sender;
+            switch (tb.Uid) 
+            {
+                case "prev":
+                    pc.CurrentPage--;
+                    break;
+                case "next":
+                    pc.CurrentPage++;
+                    break;
+                default:
+                    pc.CurrentPage = Convert.ToInt32(tb.Text);
+                    break;
+            }
+            lvLess.ItemsSource = LessFilter.Skip(pc.CurrentPage * pc.CountPage - pc.CountPage).Take(pc.CountPage).ToList();
+        }
+
+        private void txtPageCount_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            try
+            {
+                pc.CountPage = Convert.ToInt32(txtPageCount.Text);
+            }
+            catch
+            {
+                pc.CountPage = LessFilter.Count; 
+            }
+            pc.Countlist = LessFilter.Count;
+            lvLess.ItemsSource = LessFilter.Skip(0).Take(pc.CountPage).ToList();
         }
     }
 }

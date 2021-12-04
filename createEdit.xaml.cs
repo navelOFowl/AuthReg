@@ -81,7 +81,7 @@ namespace AuthReg
                     Lesson.Курс = cbCourse.SelectedIndex + 1;
                     Lesson.Тема = tbTheme.Text;
                     Lesson.Ведущий = idSpeaker;
-                    Lesson.Дата = dpDate.SelectedDate;
+                    Lesson.Дата = (DateTime)dpDate.SelectedDate;
                     Lesson.Стоимость = Int32.Parse(tbPrive.Text);
                     if (rbZoom.IsChecked == true) Lesson.Площадка = 2;
                     if (rbDiscord.IsChecked == true) Lesson.Площадка = 1;

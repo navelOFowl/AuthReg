@@ -15,12 +15,12 @@ namespace AuthReg
     public partial class Занятия
     {
         public int IDLesson { get; set; }
-        public Nullable<int> Курс { get; set; }
+        public int Курс { get; set; }
         public string Тема { get; set; }
-        public Nullable<int> Ведущий { get; set; }
-        public Nullable<System.DateTime> Дата { get; set; }
-        public Nullable<int> Стоимость { get; set; }
-        public Nullable<int> Площадка { get; set; }
+        public int Ведущий { get; set; }
+        public System.DateTime Дата { get; set; }
+        public int Стоимость { get; set; }
+        public int Площадка { get; set; }
     
         public virtual Ведущие Ведущие { get; set; }
         public virtual Курсы Курсы { get; set; }
